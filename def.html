@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Joyeux Noël! 🎅</title>
+    <link rel="shotcut icon" href="image.jpg">
+    <link rel="stylesheet" href="l.css">
+    <link rel="stylesheet" href="my.js">
+    <link class="audio/mp3" rel="audio/mp3" href="last_chrismass.mp3">
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          overflow: hidden;
+          color: white;
+          text-align: center;
+        }
+        .christmas-container {
+          background: rgba(0, 9, 9, 0.6);
+          padding: 40px;
+          border-radius: 10%;
+          box-shadow: 0 10px 30px rgba(139, 143, 144, 0.5);
+        }
+        h1 {
+            font-size: 4em;
+            margin-bottom: 10;
+            text-shadow: 
+            0 0 10px rgba(6, 6, 191, 0.8),
+            0 0 20px rgba(91, 167, 255, 0.8), 
+            0 0 30px rgba(90, 209, 230, 0.6);
+            box-shadow: 
+            0 0 20px rgba(91, 167, 255, 0.5),
+            0 0 40px rgba(90, 209, 230, 0.3);
+            padding: 10px 20px;
+            border-radius: 10px;
+            animation: glow 0.1s infinite alternate;
+        }
+        #snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .snowflake {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: white;
+          border-radius: 30%;
+          opacity: 7;
+        }
+        #countdown {
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          font-size: 2em;
+          margin-top: 10px;
+        }
+    </style>
+  </head>
+ <body>
+    <div id="audioControls">
+      <audio id="backgroundMusic" autoplay loop>
+        <source src="last_chrismass.mp3" type="audio/mpeg">
+        Votre navigateur ne suppoete pas les fichiers.
+      </audio>
+    </div>
+    <div class="christmas-container" style="color: rgb(235, 10, 44);">
+      <h1> <strong> 🎅 Joyeux Noël! 🎄</strong>
+      </h1>
+      <style>
+        .content {
+          display: none;
+          }
+        </style>
+    <button onclick="toggleContent()" style="background-color: #1b181b;">
+      <span class="text" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <strong style="color: rgb(9, 139, 220);"> Ouvrir un cadeau 🎁 </strong>
+      </span>
+   </button> 
+    <div class="content">
+      <div id="myModal" class="modal">
+        <div class="modal-content" style="width: 2%;">
+          <h2 style="color: rgb(247, 246, 246);"> <strong style="font-family: 'Times New Roman', Times, serif;">🎉 JOYEUSES FÊTES 2025 🎉</strong></h2>
+          <p style="color: cornflowerblue;"><strong style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">  Que cette nouvelle année t'apporte😊bonheur🌟🎯réussite🏆 et❤amour!💖  🎊 </strong></p>
+        </div>
+      </div>
+    </div>    
+      <script>
+        function toggleContent() {
+            var content = document.querySelector('.content');
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+    </script>
+    <p> <strong style="color: aqua;">❅❅ Je te souhaite un Joyeux Noël plein d'amour ❅❅</strong></p>
+        <div id="countdown" 
+         style="color: #e4ec07bf;"> </div>
+        <canvas id="snowflakes"></canvas>
+
+
+
+    <script>
+        // Effet neige
+        function createSnowflakes() {
+          const canvas = document.getElementById('snowflakes');
+          const ctx = canvas.getContext('2d');
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+
+          const snowflakes = [];
+            for (let i = 0; i < 100; i++) {
+              snowflakes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speed: Math.random() * 3 + 1
+             });
+            }
+
+        function drawSnowflakes() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'white';
+
+                snowflakes.forEach(flake => {
+                    ctx.beginPath();
+                    ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    flake.y += flake.speed;
+                    if (flake.y > canvas.height) {
+                        flake.y = 0;
+                        flake.x = Math.random() * canvas.width;
+                    }
+                });
+
+                requestAnimationFrame(drawSnowflakes);
+            }
+
+            drawSnowflakes();
+        }
+
+        // compteur du noel prochain
+        function updateCountdown() {
+            const now = new Date();
+            const christmas = new Date(now.getFullYear(), 11, 25);
+            
+            if (now > christmas) {
+                christmas.setFullYear(now.getFullYear() + 1);
+            }
+
+            const diff = christmas.getTime() - now.getTime();
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = 
+                `Noël dans : ${days} jours, ${hours} heures, ${minutes} minutes, ${seconds} secondes`;
+        }
+
+        // initialisation
+        createSnowflakes();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+    </script>
+
+  </body>
+  <footer style="color: antiquewhite;">
+      <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">&copy; <en> 2024 SEWONOU Pascal - PASKOD .  Tous droits réservés.</en></p>
+  </footer>
+</html>
