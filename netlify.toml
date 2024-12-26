@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+  command = "echo 'Pas de build nécessaire'"
+
+[[redirects]]
+  from = "/*"
+  to = "/def.html"
+  status = 200
